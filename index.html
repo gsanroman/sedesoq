@@ -308,7 +308,7 @@ updateWhenIdle:false
 
 }).addTo(mapa1);
 
-L.geoJson(mz,{onEachFeature:popup, style:estilo}).addTo(mapa1);
+
 
 
 
@@ -329,7 +329,7 @@ function estilo(feature) {
 	fillOpacity: 0.65
 	}; 
 }
-
+L.geoJson(mz,{onEachFeature:popup, style:estilo}).addTo(mapa1);
     </script>
 
 </body>

@@ -296,8 +296,22 @@ function veAlaColonia(){
 
     }
 }
+L.control.scale({
 
-L.geoJson(mz,{onEachFeature:popup}).addTo(mapa1);
+position: 'bottomleft',//el argumento es opcional,el defaults es bottomleft.
+
+imperial: false,// eldefault es true, se refiere a la escaa tambien en pies
+
+maxWidth:200,
+
+updateWhenIdle:false
+
+}).addTo(mapa1);
+
+L.geoJson(mz,{onEachFeature:popup, style:estilo}).addTo(mapa1);
+
+
+
 
 function popup(feature, layer) { 
 	if (feature.properties && feature.properties.POBTOT) 
@@ -309,7 +323,25 @@ function popup(feature, layer) {
 		} 
 		}
 
+        function style(feature) { 
 
+return { 
+
+fillColor: RGB (134, 51, 153)
+
+weight: 1, 
+
+opacity: 1, 
+
+color: 'white', 
+
+dashArray: '3', 
+
+fillOpacity: 0.65
+
+}; 
+
+}
 
     </script>
 

@@ -1,0 +1,153 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  color: rgb(134, 51, 153);
+  text-align: center;
+  font-weight: 400;
+  font-size: 2rem !important;
+}
+
+h2 {
+  color: rgb(59, 149, 202);
+  text-align: center;
+  font-weight: 100;
+  font-size: 1.5rem !important;
+}
+
+#contenedorGeneral {
+  height: 100vh;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "c1 c2 c3" "c4 c6 c7" "c5 c6 c7" "c5 c6 c7" "c5 c6 c7";
+}
+
+.caja:nth-child(1) {
+  background-color: white;
+  grid-area: c1;
+  background-image: url(../imagenes/logoSEDESOQ.png);
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.caja:nth-child(2) {
+  background-color: white;
+  grid-area: c2;
+}
+
+.caja:nth-child(3) {
+  background-color: white;
+  grid-area: c3;
+}
+.caja:nth-child(3) .logo:nth-child(1) {
+  background-image: url(../imagenes/logoJAG.png);
+  height: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.caja:nth-child(3) .logo:nth-child(2) {
+  background-image: url(../imagenes/UAQ_azul.svg);
+  height: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.caja:nth-child(4) {
+  background-color: rgb(32, 45, 91);
+  grid-area: c4;
+  color: white;
+  border-radius: 10px 0 0 0;
+}
+.caja:nth-child(4) select {
+  color: rgb(134, 51, 153);
+  width: 90%;
+  margin: auto;
+}
+
+.caja:nth-child(5) {
+  background-color: rgb(32, 45, 91);
+  grid-area: c5;
+}
+
+.caja:nth-child(6) {
+  background-color: rgb(59, 149, 202);
+  grid-area: c6;
+  border-top: 2px solid rgb(32, 45, 91);
+}
+
+.caja:nth-child(7) {
+  border-radius: 0 10px 10px 0;
+  background-color: rgb(32, 45, 91);
+  grid-area: c7;
+  padding: 20px;
+  color: white;
+}
+.caja:nth-child(7) .dx {
+  overflow-y: scroll;
+  color: white;
+  max-height: 75%;
+}
+
+.oculto {
+  display: none !important;
+}
+
+#caja5 {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  border-radius: 0 0 0 10px;
+}
+#caja5 h3 {
+  font-size: 0.75rem;
+  color: white;
+}
+#caja5 .dato {
+  font-size: 1.5rem;
+}
+#caja5 .cajita {
+  text-align: center;
+  cursor: pointer;
+}
+#caja5 .cajita1 {
+  text-align: center;
+}
+
+.alerta0 {
+  color: lightgreen;
+}
+
+.alerta1 {
+  color: greenyellow;
+}
+
+.alerta2 {
+  color: yellow;
+}
+
+.alerta3 {
+  color: orange;
+}
+
+.alerta4 {
+  color: red;
+}
+
+.sinAlerta {
+  color: aliceblue;
+  text-shadow: rgb(134, 51, 153) 0px 0px 10px;
+  font-weight: 700;
+}
+
+label {
+  text-align: center !important;
+  display: block !important;
+}
+
+/*# sourceMappingURL=estilo.css.map */

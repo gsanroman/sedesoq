@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!-- created by CoolUtils XML package -->
+  <options Comma="," Quote="&quot;" FirstRowIsHeader="True" SkipRows="0" OutputEncoding="ceANSI" AllowCaptions="False" JSONMode="jmCompact" ExportComma=";" ExportQuote="&quot;" CodePage="50001" InternalDLL="False" KeepFolderStructure="True" KeepFolderLevel="0" CheckFileMode="cfmAsk" DeleteOriginals="False" OpenDestination="True" CombineFiles="False" CopyDateStamps="False" ForceInternal="False" MaxPages="0" >
+    <InputFormats Integer="#,###,##0" Float="#,###,##0.00" DateTime=" " Null="null" Bool_True="true" Bool_False="false" SeparatorDecimal="" SeparatorThousand="" SeparatorDate="" SeparatorTime="" />
+    <OutputFormats Integer="#,###,##0" Float="#,###,##0.00" DateTime=" " Null="null" Bool_True="true" Bool_False="false" SeparatorDecimal="" SeparatorThousand="" SeparatorDate="" SeparatorTime="" />
+    <Paper Size="papA4" Orientation="poPortrait" Options="ppoFitToPage,ppoAutosize" Units="puInches" TopMarginStr="0.3" BottomMarginStr="0.3" LeftMarginStr="0.3" RightMarginStr="0.3" />
+    <PDF PDFA="False" Compression="hcMaximum" Options="poFitToPage" FontEmbedding="feNone" SplitSize="0" >
+      <Sign />
+      <Encrypt IsEncrypt="False" UserPermissions="&lt;empty&gt;" Strength="es128RC" />
+      <Info Author="Softplicity" Creator="Softplicity" Producer="Softplicity" />
+      <View PageLayout="plNoPreference" PageMode="ppmNormalView" PageZoom="pzmDefault" />
+    </PDF>
+    <Title>
+      <Header Position="cpCenter" TextOptions="ctoWordWrap" Visible="True" VisibleOFF="False" MarginsStr="0.200000002980232x0.200000002980232" >
+        <Font IsSetup="False" Name="Tahoma" Style="&lt;empty&gt;" Size="10" Color="0" PDFEmbedding="False" />
+        <Image SizeStr="0,0" Position="cpLeft" MarginsStr="0,0" Enabled="True" />
+      </Header>
+      <Footer Position="cpCenter" TextOptions="ctoWordWrap" Visible="True" VisibleOFF="False" MarginsStr="0.200000002980232x0.200000002980232" >
+        <Font IsSetup="False" Name="Tahoma" Style="&lt;empty&gt;" Size="10" Color="0" PDFEmbedding="False" />
+        <Image SizeStr="0,0" Position="cpLeft" MarginsStr="0,0" Enabled="True" />
+      </Footer>
+      <Numeration Start="1" Len="1" ContinuePrevDoc="False" ContinuePrevSession="False" />
+    </Title>
+    <SQL ScriptType="sqlAnsi" IBDialect="3" CreateTable="False" />
+    <Access />
+    <XLS CombineBySheets="False" MaxRows="65536" ShowHeader="True" Options="&lt;empty&gt;" >
+      <Colors>
+        <Header FgColor="12615680" BgColor="16772829" Bold="False" />
+      </Colors>
+    </XLS>
+    <XMLExport Mode="xetDatapacket" >
+      <Data Format="&lt;empty&gt;" />
+    </XMLExport>
+    <columns>
+      <column name="1" visible="True" width="3" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column visible="True" width="3" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="X" visible="True" width="3" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="DX" visible="True" width="10" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DMUNICIPIO20" visible="True" width="12" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="INDICADOR" visible="True" width="10" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DENOMINADOR.X" visible="True" width="18" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DESCRIPCION" visible="True" width="158" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DEBERIADISMINUIR.X" visible="True" width="18" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="COLONIA" visible="True" width="21" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DIAGNOSTICO" visible="True" width="11" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DIFERENCIA" visible="True" width="10" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="CAMBIOREAL" visible="True" width="10" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="SENTIDO" visible="True" width="7" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="DX1" visible="True" width="8" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DX2" visible="True" width="16" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DX3" visible="True" width="51" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="AL1" visible="True" width="3" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="AL2" visible="True" width="3" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="AL3" visible="True" width="3" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="ALERTA" visible="True" width="6" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="PORCENTAJE20" visible="True" width="12" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="MUNICIPIO" visible="True" width="12" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DIF" visible="True" width="3" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DELTAMUN" visible="True" width="12" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DELTACOL" visible="True" width="12" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DENOMINADOR.Y" visible="True" width="18" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DEBERIADISMINUIR.Y" visible="True" width="18" alignment="taLeftJustify" datatype="cdtInteger" />
+      <column name="PROMEDIO" visible="True" width="127" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="REZAGO" visible="True" width="242" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="EXCESO" visible="True" width="283" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DX4" visible="True" width="242" alignment="taLeftJustify" datatype="cdtString" />
+      <column name="DX5" visible="True" width="914" alignment="taLeftJustify" datatype="cdtString" />
+    </columns>
+  </options>

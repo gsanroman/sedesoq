@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="es-MX">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/estilo.css">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/leaflet.label.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <section id="contenedorGeneral" class="d-grid w-100 mx-auto pb-2 container">
+            <div id="caja1" class="caja g-1"></div>
+            <div id="caja2" class="caja g-1">
+                <h1 class="mt-3">Sistema de consulta de información</h1>
+                <h2 class="d-sm-none d-xs-none d-md-block d-lg-block d-xl-block">Diagnóstico para programa de intervención integral </h2>
+            </div>
+            <div id="caja3" class="caja g-1 row p-2">
+                <div id="logo1" class="logo g-2 col-6"></div>
+                <div id="logo2"class="logo g-2 col-6"></div>
+
+            </div>
+            
+            <div id="caja4" class="caja g-2">
+                <label for="selectorDeColonias" class="p-1 g-1 mx-auto form-label text-center">Selecciona la colonia</label>
+                <select name="selectorDeColonias" class="gx-2 form-select" id="selectorDeColonias" onload="cargaDatos();
+                rellenaColonias();" onchange="veAlaColonia();activaSelector();ponIndicador();">
+                <option value="MUNICIPIO">MUNICIPIO</option>
+            </select>
+
+                <label id="lselectorDeIndicadores" for="selectorDeIndicadores" class="p-1 g-1 form-label mx-auto text-center oculto">Selecciona el indicador</label>
+                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador()">
+                    <option value="general">General</option>
+                </select>
+
+            </div>
+            <div id="caja5" class="caja g-1 col-12 d-flex"></div>
+            <div id="caja6" class="caja g-1"></div>
+            <div id="caja7" class="caja g-1 "></div>
+
+        </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet-src.js"></script>
+    <script>
+
+        var claves={};
+        var dxIndicadores={};
+        var dxOtros={};
+        var dxGeneral={};
+        var colonias=[];
+        var temas=[];
+        // OBTEN LOS DATOS
+        function cargaDatos(){
+            $.getJSON("js/claves.json",function(jd){claves=jd;});
+            $.getJSON("js/dx2.json",function(jd){dxIndicadores=jd;});
+            $.getJSON("js/dx3.json",function(jd){dxOtros=jd});
+            $.getJSON("js/dx4.json",function(jd){dxGeneral=jd});
+        }
+        //RELLENAR LOS SELECTORES
+            //OBTENER LAS COLONIAS        
+        
+            function rellenaColonias(){
+            document.getElementById("selectorDeColonias").innerHTML="";
+            for(var i=0; i<dxGeneral.length; i++){
+                if(colonias.includes(dxGeneral[i].COLONIA )){}
+                else{colonias.push(dxGeneral[i].COLONIA)}
+            }
+            for(var i=0; i<colonias.length; i++){
+                var opcion=document.createElement("option");
+                opcion.setAttribute("value", colonias[i]);
+                opcion.setAttribute("value", colonias[i]);
+                opcion.innerText=colonias[i];
+                if(i==0){
+                    opcion.setAttribute("selected", true);
+                }
+                document.getElementById("selectorDeColonias").appendChild(opcion);
+            }
+        
+        }
+
+        function rellenaIndicadores(){
+            for(var i=0; i<claves.length; i++){
+                if(temas.includes(claves[i].tema )){}
+                else{temas.push(claves[i].tema)}
+            }
+            temas=temas.sort();
+            for(var i=0; i<temas.length; i++){
+                if(temas[i]!="0"){
+                   var opcion=document.createElement("option");
+                    opcion.setAttribute("value", temas[i]);
+                    opcion.setAttribute("value", temas[i]);
+                    opcion.innerText=temas[i];
+                    if(i==0){
+                        opcion.setAttribute("selected", true);
+                    }
+                    document.getElementById("selectorDeIndicadores").appendChild(opcion);
+                }
+            }
+        }
+        
+        function activaSelector(){
+            document.getElementById("caja5").innerHTML="";
+            document.getElementById("caja7").innerHTML="";
+            rellenaIndicadores();
+            var misel=document.getElementById("selectorDeColonias");
+
+            var misel2=document.getElementById("selectorDeIndicadores");
+            misel2.children[0].selected=true;
+            if(misel.value=="MUNICIPIO"){
+                $("#selectorDeIndicadores").addClass("oculto");
+                $("#lselectorDeIndicadores").addClass("oculto");
+            }
+            else{  $("#selectorDeIndicadores").removeClass("oculto");
+                 $("#lselectorDeIndicadores").removeClass("oculto")}
+            
+        }
+
+
+        // ESPACIO DE INDICADORES. ESTO SE ACTIVA CUANDO SE SELECCIONA UN INDICADOR
+
+        function ponIndicador(){
+            var micolonia=document.getElementById("selectorDeColonias").value;
+            var mitema=document.getElementById("selectorDeIndicadores").value;
+            document.getElementById("caja5").innerHTML="";
+            var seleccionados=[];
+            for(var i=0; i<claves.length; i++){
+                if(claves[i].tema==mitema & !seleccionados.includes(mitema)){
+                    seleccionados.push(claves[i].indicador)
+                }
+            }
+            if(mitema!="Otros" & mitema!="general"){
+                for(var i=0; i<dxIndicadores.length; i++){
+                    if(dxIndicadores[i].COLONIA==micolonia & seleccionados.includes(dxIndicadores[i].INDICADOR)){
+
+                        var x=(dxIndicadores[i].PORCENTAJE20*100).toString();
+                        var y=x.lastIndexOf(".");
+                        x=x.slice(0,y+3)+"%";
+                        micajita=document.createElement("div");
+                        micajita.setAttribute("class","cajita col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
+                        micajita.setAttribute("name",dxIndicadores[i].INDICADOR);
+                        micajita.setAttribute("onclick","mkdx(this.getAttribute('name'))");
+                        micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxIndicadores[i].DESCRIPCION+"</h3>"+"<span class='dato alerta"+dxIndicadores[i].ALERTA+"'>"+x+"</span>"; 
+                        document.getElementById("caja5").appendChild(micajita);
+                    }    
+                }
+            }else if(mitema=="Otros"){
+                for(var i=0; i<dxOtros.length; i++){
+                    if(dxOtros[i].COLONIA==micolonia & seleccionados.includes(dxOtros[i].INDICADOR)){
+                        var x=(dxOtros[i]["VALOR.X"]).toString();
+                        var y=x.lastIndexOf(".");
+                        x=x.slice(0,y+3);
+                        micajita=document.createElement("div");
+                        micajita.setAttribute("class","cajita col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
+                        micajita.setAttribute("name",dxOtros[i].INDICADOR);
+                        micajita.setAttribute("onclick","mkdx(this.getAttribute('name'))");
+                        micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxOtros[i].DESCRIPCION+"</h3>"+"<span class='dato alerta"+(dxIndicadores[i].ALERTA+2)+"'>"+x+"</span>"; 
+                        document.getElementById("caja5").appendChild(micajita);
+                    }    
+                }
+            }else if(mitema=="general" | micolonia=="MUNICIPIO"){
+                for(var i=0; i<dxGeneral.length; i++){
+                    if(dxGeneral[i].COLONIA==micolonia & dxGeneral[i].VALOR!="NA"){
+                        var x=(dxGeneral[i]["VALOR"]).toString();
+                        micajita=document.createElement("div");
+                        micajita.setAttribute("class","cajita1 col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
+                        micajita.setAttribute("name",dxGeneral[i].INDICADOR);
+                        micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxGeneral[i].DESCRIPCION+"</h3>"+"<span class='dato sinAlerta'>"+x+"</span>"; 
+                        document.getElementById("caja5").appendChild(micajita);
+                    }    
+                }
+            }
+
+
+
+        }
+
+
+    // al hacer hover sobre una cajita, debe aparecer el dx
+
+    function mkdx(x){
+        var col=document.getElementById("selectorDeColonias").value;
+        var tem=document.getElementById("selectorDeIndicadores").value;
+        if(tem!="Otros" & tem!="General"){
+        for(var i=0; i<dxIndicadores.length; i++){
+            if(dxIndicadores[i].INDICADOR==x & dxIndicadores[i].COLONIA==col){
+                document.getElementById("caja7").innerHTML="<h4 class='titulito'>"+dxIndicadores[i].DESCRIPCION+"</h4><br/><div class='dx text-wrap'>"+dxIndicadores[i].DX5+"</div>";            }
+        }
+        }else if(tem=="Otros"){
+            for(var i =0; i<dxOtros.length; i++){
+                if(dxOtros[i].INDICADOR==x & dxOtros[i].COLONIA==col){
+                    document.getElementById("caja7").innerHTML="<h4 class='titulito'>"+dxIndicadores[i].DESCRIPCION+"</h4><br/><div class='dx text-wrap'>"+dxOtros[i].DX2+"</div>";            
+                }
+            }
+        }
+        
+    }
+
+
+
+
+        // LLAMA LAS FUNCIONES DE SELECTORES
+
+        $(document).ready(function(){
+            cargaDatos();
+            rellenaColonias();
+            rellenaIndicadores();
+            ponIndicador();
+            for(var i=0; i<dxGeneral.length; i++){
+                if(dxGeneral[i].COLONIA==micolonia){
+                    var x=(dxGeneral[i]["VALOR"]).toString();
+                    micajita=document.createElement("div");
+                    micajita.setAttribute("class","cajita1 col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
+                    micajita.setAttribute("name",dxGeneral[i].INDICADOR);
+                    micajita.setAttribute("onclick","mkdx(this.getAttribute('name'))");
+                    micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxGeneral[i].DESCRIPCION+"</h3>"+"<span class='dato sinAlerta'>"+x+"</span>"; 
+                    document.getElementById("caja5").appendChild(micajita);
+                }    
+            }
+        });
+        
+            $.ready(function(){
+                cargaDatos();
+                rellenaColonias();
+                setTimeout(()=>{rellenaColonias()},1000);
+            });
+        
+            document.getElementById("selectorDeColonias").onload=setTimeout(()=>{rellenaColonias()},500);
+            document.getElementById("selectorDeIndicadores").onload=setTimeout(()=>{rellenaIndicadores()},500);
+            
+            setTimeout(()=>{rellenaColonias()},1000);
+            rellenaColonias();
+            
+            
+
+// MAPA // // //////////////////////////////////
+
+
+var mapa1 = L.map('caja6').
+setView([20.587820, -100.387583], 11);
+var zona =L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'Powered by <a href="http://itzamna.org">ITZAMNA<a> | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 22
+}).addTo(mapa1);
+
+
+L.control.scale({
+position: 'bottomleft',//el argumento es opcional,el defaults es bottomleft.
+imperial: false,// eldefault es true, se refiere a la escaa tambien en pies
+maxWidth:200,
+updateWhenIdle:false
+}).addTo(mapa1);
+
+
+function veAlaColonia(){
+    var col = document.getElementById("selectorDeColonias").value;
+    switch(col){
+       case "MUNICIPIO":
+        mapa1.flyTo([20.587820, -100.387583], 11);
+        break;
+        case "Hércules":
+        mapa1.setView([20.598698, -100.356046], 16);
+        break;
+        case "La Sierrita":
+        mapa1.setView([20.593135, -100.418928], 16);
+        break;
+        case "Santa María Magdalena":
+        mapa1.setView([20.596287, -100.451519], 16);
+        break;
+        case "San Miguelito":
+        mapa1.setView([20.737072, -100.502076], 16);
+        break;
+        case "Menchaca II":
+        mapa1.setView([20.636952, -100.389570], 16);
+        break;
+        case "Eduardo Loarca":
+        mapa1.setView([20.656962, -100.464249], 16);
+        break;
+        default:
+        mapa1.flyTo([20.587820, -100.387583], 11);
+        break;
+
+    }
+}
+
+
+
+    </script>
+
+</body>
+</html>

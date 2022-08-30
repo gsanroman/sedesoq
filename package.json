@@ -1,0 +1,11 @@
+{
+  "name": "sedesoq",
+  "version": "1.0.0",
+  "description": "COnsulta interactiva de información pública para las colonias seleccionadas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guillermo San Román",
+  "license": "ISC"
+}

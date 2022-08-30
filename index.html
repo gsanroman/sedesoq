@@ -315,9 +315,7 @@ L.geoJson(mz,{onEachFeature:popup, style:estilo}).addTo(mapa1);
 
 function popup(feature, layer) { 
 	if (feature.properties && feature.properties.POBTOT){ 
-		layer.bindPopup(
-			"<span class='mititle'>Población total:</span> <span class='miData'>"+feature.properties.POBTOT +"</span> <br/><span class='mititle'> Población masculina: </span> <span class='miData'>"+feature.properties.POBMAS+"</span> <br/><span class='mititle'> Población femenina:</span> <span class='miData'>"+feature.properties.POBFEM+"</span>";
-			); 
+		layer.bindPopup("<span class='mititle'>Población total:</span> <span class='miData'>"+feature.properties.POBTOT +"</span> <br/><span class='mititle'> Población masculina: </span> <span class='miData'>"+feature.properties.POBMAS+"</span> <br/><span class='mititle'> Población femenina:</span> <span class='miData'>"+feature.properties.POBFEM+"</span>"); 
 		} 
 	}
 

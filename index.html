@@ -64,6 +64,7 @@
         var colonias=[];
         var temas=[];
         var mz=[];
+        var experimento=[];
         // OBTEN LOS DATOS
         function cargaDatos(){
             $.getJSON("js/claves.json",function(jd){claves=jd;});
@@ -71,6 +72,7 @@
             $.getJSON("js/dx3.json",function(jd){dxOtros=jd});
             $.getJSON("js/dx4.json",function(jd){dxGeneral=jd});
             $.getJSON("js/manzanas.geojson",function(jd){mz=jd});
+            $.getJSON("js/experimento.geojson",function(jd){experimento=jd});
         }
         //RELLENAR LOS SELECTORES
             //OBTENER LAS COLONIAS        

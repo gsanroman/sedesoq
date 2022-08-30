@@ -63,12 +63,14 @@
         var dxGeneral={};
         var colonias=[];
         var temas=[];
+        var mz=[];
         // OBTEN LOS DATOS
         function cargaDatos(){
             $.getJSON("js/claves.json",function(jd){claves=jd;});
             $.getJSON("js/dx2.json",function(jd){dxIndicadores=jd;});
             $.getJSON("js/dx3.json",function(jd){dxOtros=jd});
             $.getJSON("js/dx4.json",function(jd){dxGeneral=jd});
+            $.getJSON("js/manzanas.geojson",function(jd){mz=jd});
         }
         //RELLENAR LOS SELECTORES
             //OBTENER LAS COLONIAS        

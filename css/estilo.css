@@ -150,4 +150,30 @@ label {
   display: block !important;
 }
 
+.leaflet-popup-tip {
+  background-color: rgb(59, 149, 202);
+}
+
+.leaflet-popup-content-wrapper {
+  background-image: url(../imagenes/sedesoq.PNG);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.leaflet-popup-content-wrapper .mititle {
+  text-align: center;
+  font-weight: 200;
+  color: aliceblue;
+}
+.leaflet-popup-content-wrapper .miData {
+  text-align: center;
+  font-weight: 900;
+}
+
+.leaflet-popup-close-button {
+  color: red;
+}
+
 /*# sourceMappingURL=estilo.css.map */

@@ -150,7 +150,6 @@ label {
   display: block !important;
 }
 
-/*popups*/
 .leaflet-popup-tip {
   background-color: rgb(59, 149, 202);
 }

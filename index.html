@@ -39,7 +39,7 @@
             </select>
 
                 <label id="lselectorDeIndicadores" for="selectorDeIndicadores" class="p-1 g-1 form-label mx-auto text-center oculto">Selecciona el indicador</label>
-                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador(); mapaGeneral()">
+                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador(); mapaGeneral();">
                     <option value="general">General</option>
                 </select>
 
@@ -319,7 +319,6 @@ L.control.scale({
 
 function mapaGeneral(){
     destruye();
-    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general" || document.getElementById("selectorDeIndicadores").value=="Otros"){
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
         mimz.addTo(mapa1);        
         var poligonos=document.getElementsByClassName("leaflet-interactive");
@@ -327,7 +326,6 @@ function mapaGeneral(){
             poligonos[i].setAttribute("fill","rgb(134,51,153)")
         }
     
-    }
 }
 
 
@@ -407,9 +405,16 @@ function cambiaColor(nombre){
     mimz= L.geoJson(mz,{onEachFeature:popup2, style:estilo});
     mimz.addTo(mapa1);        
     var poligonos=document.getElementsByClassName("leaflet-interactive");
+
+    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general" || document.getElementById("selectorDeIndicadores").value=="Otros"){
+        for(var i=0; i<poligonos.length; i++){
+            poligonos[i].setAttribute("fill","rgb(134,51,153)")
+    }else{
+
     for(var i=0; i<poligonos.length; i++){
         poligonos[i].setAttribute("fill",ponColor(cluster[0][nombre][i]));
     }
+}
 }
 
 

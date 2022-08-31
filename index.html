@@ -157,7 +157,7 @@
                         micajita=document.createElement("div");
                         micajita.setAttribute("class","cajita col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
                         micajita.setAttribute("name",dxIndicadores[i].INDICADOR);
-                        micajita.setAttribute("onclick","mkdx(this.getAttribute('name'));cambiaColor(this.getAttribute('name'));");
+                        micajita.setAttribute("onclick","consigueName(this.getAttribute('name'));mkdx(this.getAttribute('name'));cambiaColor(this.getAttribute('name'));");
                         
                         cambiaColor
                         micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxIndicadores[i].DESCRIPCION+"</h3>"+"<span class='dato alerta"+dxIndicadores[i].ALERTA+"'>"+x+"</span>"; 

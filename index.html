@@ -157,7 +157,9 @@
                         micajita=document.createElement("div");
                         micajita.setAttribute("class","cajita col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
                         micajita.setAttribute("name",dxIndicadores[i].INDICADOR);
-                        micajita.setAttribute("onclick","mkdx(this.getAttribute('name'))");
+                        micajita.setAttribute("onclick","mkdx(this.getAttribute('name'));cambiaColor(this.getAttribute('name'));");
+                        
+                        cambiaColor
                         micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxIndicadores[i].DESCRIPCION+"</h3>"+"<span class='dato alerta"+dxIndicadores[i].ALERTA+"'>"+x+"</span>"; 
                         document.getElementById("caja5").appendChild(micajita);
                     }    
@@ -328,6 +330,40 @@ function veAlaColonia(){
         break;
 
     }
+}
+
+
+function ponColor(color){
+    micolor="";
+    switch(color){
+        case 1:
+        micolor="greenyellow";
+        break;
+        case 2:
+        micolor="yellow";
+        break;
+        case 3:
+        micolor="orange";
+        break;
+        case 4:
+        micolor="red";
+        break;
+        default:
+        micolor="gray";
+        break;
+
+    }
+}
+
+function cambiaColor(nombre){
+    var poligonos=document.getElementsByClassName("leaflet-interactive");
+    for(var i=0; i<poligonos.length; i++){
+        poligonos[i].setAttribute("fill","transparent");}
+    for(var i=0; i<poligonos.length; i++){
+        poligonos[i].setAttribute("fill",poncolor(cluster[0][nombre][i]));
+    }
+
+
 }
 
 

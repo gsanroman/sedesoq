@@ -434,16 +434,16 @@ function cambiaColor(nombre){
 
 
 function instrucciones(){
-    var panel= document.getElementById("instrucciones");
+    var panel= document.getElementById("caja7");
     panel.innerHTML="";
     if(document.getElementById("selectorDeColonias").value=="MUNICIPIO"){
-        panel.innerHTML="Selecciona una colonia para comenzar";
+        panel.innerHTML="<p id='instrucciones'>Selecciona una colonia para comenzar</p>";
     }
-    if(document.getElementById("selectorDeIndicadores").value=="General"){
-        panel.innerHTML="Selecciona una familia de indicadores para comenzar <br/> (No aplica para general u otros)"
+    if(document.getElementById("selectorDeIndicadores").value=="general"){
+        panel.innerHTML="<p id='instrucciones'>Selecciona una familia de indicadores para comenzar <br/> (No aplica para general u otros)</p>"
     }
     if(document.getElementById("selectorDeIndicadores").value!="General"){
-        panel.innerHTML="Haz click en un indicador para verlo en el mapa"
+        panel.innerHTML="<p id='instrucciones'>Haz click en un indicador para verlo en el mapa</p>"
     }
 
 }

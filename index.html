@@ -292,6 +292,7 @@ L.control.scale({
 
 
     function mapaGeneral(){
+        var poligonos=document.getElementsByClassName("leaflet-interactive");
     if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general"){
     if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});

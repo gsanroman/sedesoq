@@ -34,12 +34,12 @@
             <div id="caja4" class="caja g-2">
                 <label for="selectorDeColonias" class="p-1 g-1 mx-auto form-label text-center">Selecciona la colonia</label>
                 <select name="selectorDeColonias" class="gx-2 form-select" id="selectorDeColonias" onload="cargaDatos();
-                rellenaColonias();" onchange="instrucciones();veAlaColonia();activaSelector();ponIndicador();mapaGeneral()">
+                rellenaColonias();" onchange="veAlaColonia();activaSelector();ponIndicador();mapaGeneral();instrucciones();">
                 <option value="MUNICIPIO">MUNICIPIO</option>
             </select>
 
                 <label id="lselectorDeIndicadores" for="selectorDeIndicadores" class="p-1 g-1 form-label mx-auto text-center oculto">Selecciona el indicador</label>
-                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="instrucciones();ponIndicador(); mapaGeneral();">
+                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador(); mapaGeneral();instrucciones();">
                     <option value="general">General</option>
                 </select>
 
@@ -438,14 +438,14 @@ function instrucciones(){
     panel.innerHTML="";
     if(document.getElementById("selectorDeColonias").value=="MUNICIPIO"){
         panel.innerHTML="<p id='instrucciones'>Selecciona una colonia para comenzar</p>";
-    }
-    if(document.getElementById("selectorDeIndicadores").value=="general"){
+    } else{
+
+    if(document.getElementById("selectorDeIndicadores").value=="general" || document.getElementById("selectorDeIndicadores").value=="Otros"){
         panel.innerHTML="<p id='instrucciones'>Selecciona una familia de indicadores para comenzar <br/> (No aplica para general u otros)</p>"
-    }
-    if(document.getElementById("selectorDeIndicadores").value!="General"){
+    }else{
         panel.innerHTML="<p id='instrucciones'>Haz click en un indicador para verlo en el mapa</p>"
     }
-
+}
 }
 
 

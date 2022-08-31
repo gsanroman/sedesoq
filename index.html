@@ -293,14 +293,15 @@ L.control.scale({
 
     function mapaGeneral(){
         var poligonos=document.getElementsByClassName("leaflet-interactive");
-    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general"){
+    
     if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
+    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general"){
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
-        mimz.addTo(mapa1);
-        }
+        mimz.addTo(mapa1);        
         for(var i=0; i<poligonos.length; i++){
             poligonos[i].setAttribute("fill","rgb(134,51,153)")
         }
+    }
     }
 
 
@@ -368,9 +369,16 @@ function quitaCOlor(){
     }
 }
 
-
+var mimz;
 function cambiaColor(nombre){
-    quitaCOlor();
+    var polis=document.getElementsByTagName("path");
+    for(var i=0; i<polis.length; i++){
+        polis[i].remove();
+    }
+    if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
+    
+    mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
+    mimz.addTo(mapa1);        
     var poligonos=document.getElementsByClassName("leaflet-interactive");
     for(var i=0; i<poligonos.length; i++){
         poligonos[i].setAttribute("fill",ponColor(cluster[0][nombre][i]));

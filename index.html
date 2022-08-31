@@ -34,12 +34,12 @@
             <div id="caja4" class="caja g-2">
                 <label for="selectorDeColonias" class="p-1 g-1 mx-auto form-label text-center">Selecciona la colonia</label>
                 <select name="selectorDeColonias" class="gx-2 form-select" id="selectorDeColonias" onload="cargaDatos();
-                rellenaColonias();" onchange="veAlaColonia();activaSelector();ponIndicador();">
+                rellenaColonias();" onchange="veAlaColonia();activaSelector();ponIndicador();mapaGeneral()">
                 <option value="MUNICIPIO">MUNICIPIO</option>
             </select>
 
                 <label id="lselectorDeIndicadores" for="selectorDeIndicadores" class="p-1 g-1 form-label mx-auto text-center oculto">Selecciona el indicador</label>
-                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador()">
+                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador(); mapaGeneral()">
                     <option value="general">General</option>
                 </select>
 
@@ -236,17 +236,7 @@
             }
         });
         
-            $.ready(function(){
-                cargaDatos();
-                rellenaColonias();
-                setTimeout(()=>{rellenaColonias()},1000);
-            });
-        
-            document.getElementById("selectorDeColonias").onload=setTimeout(()=>{rellenaColonias()},500);
-            document.getElementById("selectorDeIndicadores").onload=setTimeout(()=>{rellenaIndicadores()},500);
             
-            setTimeout(()=>{rellenaColonias()},1000);
-            rellenaColonias();
             
             
 
@@ -296,8 +286,15 @@ L.control.scale({
         fillOpacity: 0.65
         }; 
     }
-    var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
-    mimz.addTo(mapa1);
+
+
+    function mapaGeneral(){
+    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general"){
+    if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
+        var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
+        mimz.addTo(mapa1);
+        }
+    }
 
 
 
@@ -331,6 +328,21 @@ function veAlaColonia(){
 
     }
 }
+
+
+$.ready(function(){
+    cargaDatos();
+    rellenaColonias();
+    setTimeout(()=>{rellenaColonias()},1000);
+});
+
+document.getElementById("selectorDeColonias").onload=setTimeout(()=>{rellenaColonias()},500);
+document.getElementById("selectorDeIndicadores").onload=setTimeout(()=>{rellenaIndicadores()},500);
+
+setTimeout(()=>{rellenaColonias()},1000);
+rellenaColonias();
+mapaGeneral();
+
 
     </script>
 

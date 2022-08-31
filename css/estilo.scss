@@ -123,11 +123,12 @@ label{ text-align: center!important;    display: block!important;}
 
 /*popups*/
 .leaflet-popup-content-wrapper{
-
-    .leaflet-popup-content{
-        background-image: url(../imagenes/sedesoq.PNG);
+    background-image: url(../imagenes/sedesoq.PNG);
         background-repeat: no-repeat;
         background-size: contain;
+
+    .leaflet-popup-content{
+        background-color: transparent;
     }
     .mititle{text-align: center; font-weight: 200; color:aliceblue;}
     .miData{text-align: center; font-weight: 900;}

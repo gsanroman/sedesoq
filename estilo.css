@@ -151,10 +151,13 @@ label {
 }
 
 /*popups*/
-.leaflet-popup-content-wrapper .leaflet-popup-content {
+.leaflet-popup-content-wrapper {
   background-image: url(../imagenes/sedesoq.PNG);
   background-repeat: no-repeat;
   background-size: contain;
+}
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+  background-color: transparent;
 }
 .leaflet-popup-content-wrapper .mititle {
   text-align: center;

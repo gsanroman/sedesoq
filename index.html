@@ -356,15 +356,21 @@ function ponColor(color){
     return micolor;
 }
 
-function cambiaColor(nombre){
+
+function quitaCOlor(){
     var poligonos=document.getElementsByClassName("leaflet-interactive");
     for(var i=0; i<poligonos.length; i++){
-        poligonos[i].setAttribute("fill","transparent");}
+        poligonos[i].setAttribute("fill","white")
+    }
+}
+
+
+function cambiaColor(nombre){
+    quitaCOlor();
+    var poligonos=document.getElementsByClassName("leaflet-interactive");
     for(var i=0; i<poligonos.length; i++){
         poligonos[i].setAttribute("fill",ponColor(cluster[0][nombre][i]));
     }
-
-
 }
 
 

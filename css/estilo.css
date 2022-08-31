@@ -175,8 +175,8 @@ label {
 .leaflet-popup-content-wrapper .miData {
   text-align: center !important;
   font-weight: 900 !important;
-  color: rgb(134, 51, 153) !important;
-  line-height: 0.25;
+  color: white !important;
+  line-height: 0.75;
   font-size: xx-large;
   display: block;
 }

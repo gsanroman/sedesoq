@@ -34,19 +34,22 @@
             <div id="caja4" class="caja g-2">
                 <label for="selectorDeColonias" class="p-1 g-1 mx-auto form-label text-center">Selecciona la colonia</label>
                 <select name="selectorDeColonias" class="gx-2 form-select" id="selectorDeColonias" onload="cargaDatos();
-                rellenaColonias();" onchange="veAlaColonia();activaSelector();ponIndicador();mapaGeneral()">
+                rellenaColonias();" onchange="instrucciones();veAlaColonia();activaSelector();ponIndicador();mapaGeneral()">
                 <option value="MUNICIPIO">MUNICIPIO</option>
             </select>
 
                 <label id="lselectorDeIndicadores" for="selectorDeIndicadores" class="p-1 g-1 form-label mx-auto text-center oculto">Selecciona el indicador</label>
-                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="ponIndicador(); mapaGeneral();">
+                <select name="selectorDeIndicadores" class="gx-2 form-select oculto" id="selectorDeIndicadores" onchange="instrucciones();ponIndicador(); mapaGeneral();">
                     <option value="general">General</option>
                 </select>
 
             </div>
             <div id="caja5" class="caja g-1 col-12 d-flex"></div>
             <div id="caja6" class="caja g-1"></div>
-            <div id="caja7" class="caja g-1 "></div>
+            <div id="caja7" class="caja g-1 ">
+
+                <p id="instrucciones">Selecciona una colonia para comenzar</p>
+            </div>
 
         </section>
 
@@ -430,6 +433,23 @@ function cambiaColor(nombre){
 }
 
 
+function instrucciones(){
+    var panel= document.getElementById("instrucciones");
+    panel.innerHTML="";
+    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO"){
+        panel.innerHTML="Selecciona una colonia para comenzar";
+    }
+    if(document.getElementById("selectorDeIndicadores").value=="General"){
+        panel.innerHTML="Selecciona una familia de indicadores para comenzar <br/> (No aplica para general u otros)"
+    }
+    if(document.getElementById("selectorDeIndicadores").value!="General"){
+        panel.innerHTML="Haz click en un indicador para verlo en el mapa"
+    }
+
+}
+
+
+
 $.ready(function(){
     cargaDatos();
     rellenaColonias();
@@ -442,6 +462,7 @@ document.getElementById("selectorDeIndicadores").onload=setTimeout(()=>{rellenaI
 setTimeout(()=>{rellenaColonias()},1000);
 rellenaColonias();
 mapaGeneral();
+
 
 
     </script>

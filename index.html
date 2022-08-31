@@ -281,7 +281,7 @@ L.control.scale({
     
     function estilo(feature) { 
         return { 
-        fillColor: 'rgb(134,51,153)',
+        //fillColor: 'rgb(134,51,153)',
         weight: 1, 
         opacity: 1, 
         color: 'white', 
@@ -296,6 +296,9 @@ L.control.scale({
     if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
         mimz.addTo(mapa1);
+        }
+        for(var i=0; i<poligonos.length; i++){
+            poligonos[i].setAttribute("fill","rgb(134,51,153)")
         }
     }
 

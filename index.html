@@ -317,9 +317,8 @@ L.control.scale({
 
     }
 
-    function mapaGeneral(){
-        destruye()  
-    
+function mapaGeneral(){
+    destruye();
     if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general" || document.getElementById("selectorDeIndicadores").value=="Otros"){
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
         mimz.addTo(mapa1);        
@@ -329,7 +328,7 @@ L.control.scale({
         }
     
     }
-
+}
 
 
 function veAlaColonia(){

@@ -158,8 +158,6 @@
                         micajita.setAttribute("class","cajita col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
                         micajita.setAttribute("name",dxIndicadores[i].INDICADOR);
                         micajita.setAttribute("onclick","consigueName(this.getAttribute('name'));mkdx(this.getAttribute('name'));cambiaColor(this.getAttribute('name'));");
-                        
-                        cambiaColor
                         micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxIndicadores[i].DESCRIPCION+"</h3>"+"<span class='dato alerta"+dxIndicadores[i].ALERTA+"'>"+x+"</span>"; 
                         document.getElementById("caja5").appendChild(micajita);
                     }    
@@ -304,21 +302,32 @@ L.control.scale({
     }
 
 
-    function mapaGeneral(){
-        
+
+    function destruye(){
+        var polis=document.getElementsByTagName("path");
+        for(var i=0; i<polis.length; i++){
+            polis[i].remove();
+            if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
+        }
         var polis=document.getElementsByTagName("path");
         for(var i=0; i<polis.length; i++){
             polis[i].remove();
         }
-    if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
-    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general"){
+        if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
+
+    }
+
+    function mapaGeneral(){
+        destruye()  
+    
+    if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general" || document.getElementById("selectorDeIndicadores").value=="Otros"){
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
         mimz.addTo(mapa1);        
         var poligonos=document.getElementsByClassName("leaflet-interactive");
         for(var i=0; i<poligonos.length; i++){
             poligonos[i].setAttribute("fill","rgb(134,51,153)")
         }
-    }
+    
     }
 
 
@@ -330,28 +339,29 @@ function veAlaColonia(){
         mapa1.flyTo([20.587820, -100.387583], 11);
         break;
         case "Hércules":
-        mapa1.setView([20.598698, -100.356046], 16);
+        mapa1.setView([20.60095200510791, -100.3574724213104], 15);
         break;
         case "La Sierrita":
         mapa1.setView([20.593135, -100.418928], 16);
         break;
         case "Santa María Magdalena":
-        mapa1.setView([20.596287, -100.451519], 16);
+        mapa1.setView([20.596834416425473, -100.45723342685962], 14);
         break;
         case "San Miguelito":
-        mapa1.setView([20.737072, -100.502076], 16);
+        mapa1.setView([20.737072, -100.502076], 15);
         break;
         case "Menchaca II":
         mapa1.setView([20.636952, -100.389570], 16);
         break;
         case "Eduardo Loarca":
-        mapa1.setView([20.656962, -100.464249], 16);
+        mapa1.setView([ 20.657992270365952, -100.46013450570173], 15);
         break;
         default:
         mapa1.flyTo([20.587820, -100.387583], 11);
         break;
 
     }
+    destruye();
 }
 
 var elname;
@@ -382,22 +392,19 @@ function ponColor(color){
     return micolor;
 }
 
-
+/*
 function quitaCOlor(){
     var poligonos=document.getElementsByClassName("leaflet-interactive");
     for(var i=0; i<poligonos.length; i++){
         poligonos[i].setAttribute("fill","white")
     }
 }
+*/
+
 
 var mimz;
 function cambiaColor(nombre){
-    var polis=document.getElementsByTagName("path");
-    for(var i=0; i<polis.length; i++){
-        polis[i].remove();
-    }
-    if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
-    
+    destruye();
     mimz= L.geoJson(mz,{onEachFeature:popup2, style:estilo});
     mimz.addTo(mapa1);        
     var poligonos=document.getElementsByClassName("leaflet-interactive");

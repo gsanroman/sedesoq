@@ -125,15 +125,15 @@ label{text-align: center!important;display: block!important;}
 .leaflet-popup-tip{background-color: $azul_claro;}
 
 .leaflet-popup-content-wrapper{
-    background-image: url(../imagenes/sedesoq.PNG);
-        background-repeat: no-repeat;
-        background-size: contain;
+    background-image: url(../imagenes/sedesoq.PNG)!important;
+        background-repeat: no-repeat!important;
+        background-size: contain!important;
 
     .leaflet-popup-content{
-        background-color: rgba(255,255,255,.7)    }
+        background-color: rgba(255,255,255,.4)    }
 
     .mititle{text-align: center; font-weight: 200; color:aliceblue;}
-    .miData{text-align: center; font-weight: 900;}
+    .miData{text-align: center; font-weight: 900; color:$morado}
 }
 
 .leaflet-popup-close-button{color:red}

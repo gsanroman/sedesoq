@@ -122,22 +122,34 @@ label{text-align: center!important;display: block!important;}
 
 
 
-.leaflet-popup-tip{background-color: $azul_claro!important;}
+.leaflet-popup-tip{background-color: $azul_claro!important;
+    background-color: rgb(59, 149, 202)!important;}
 
 .leaflet-popup-content-wrapper{
     background-image: url(../imagenes/sedesoq.PNG)!important;
         background-repeat: no-repeat!important;
         background-size: cover!important;
+        background-color: $azul_claro;
 
     .leaflet-popup-content{
-        background-color: rgba(255,255,255,.4)!important    }
+        background-color: rgba(2, 2, 2, .6)!important;
+    border-radius: 10px!important;
+    padding: 5px!important
+}
 
-    .mititle{text-align: center!important;
+    .mititle{
+        display: block!important;
+        text-align: center!important;
          font-weight: 200!important;
-          color:aliceblue;!important}
+          color:aliceblue!important}
+
     .miData{text-align: center!important;
          font-weight: 900!important; 
-         color:$morado!important}
+         color:$morado!important;
+         line-height: 0.25;
+         font-size: xx-large;
+         display: block;}
 }
 
 .leaflet-popup-close-button{color:red!important}
+.leaflet-container a{color: $morado !important;}

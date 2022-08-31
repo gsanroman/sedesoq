@@ -173,7 +173,7 @@
                         micajita=document.createElement("div");
                         micajita.setAttribute("class","cajita col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 p-2 g-1");
                         micajita.setAttribute("name",dxOtros[i].INDICADOR);
-                        micajita.setAttribute("onclick","mkdx(this.getAttribute('name'))");
+                        micajita.setAttribute("onclick","consigueName(this.getAttribute('name')); mkdx(this.getAttribute('name'))");
                         micajita.innerHTML="<h3 class='col-12 text-wrap'>"+dxOtros[i].DESCRIPCION+"</h3>"+"<span class='dato alerta"+(dxIndicadores[i].ALERTA+2)+"'>"+x+"</span>"; 
                         document.getElementById("caja5").appendChild(micajita);
                     }    
@@ -278,6 +278,19 @@ L.control.scale({
             layer.bindPopup("<span class='mititle'>Población total:</span> <span class='miData'>"+feature.properties.POBTOT +"</span> <br/><span class='mititle'> Población masculina: </span> <span class='miData'>"+feature.properties.POBMAS+"</span> <br/><span class='mititle'> Población femenina:</span> <span class='miData'>"+feature.properties.POBFEM+"</span>"); 
             } 
         }
+
+        function popup2(feature, layer) { 
+            var desc;
+            for(i=0;i<claves.length; i++){
+                if(claves[i].indicador==elname){
+                    desc=claves[i].descripcion;
+                }else{}
+            }
+
+            if (feature.properties && feature.properties[elname]){ 
+                layer.bindPopup("<span class='mititle'>"+desc+"</span> <br/><span class='miData'>"+feature.properties[elname] +"</span>";
+                } 
+            }
     
     function estilo(feature) { 
         return { 
@@ -292,12 +305,16 @@ L.control.scale({
 
 
     function mapaGeneral(){
-        var poligonos=document.getElementsByClassName("leaflet-interactive");
-    
+        
+        var polis=document.getElementsByTagName("path");
+        for(var i=0; i<polis.length; i++){
+            polis[i].remove();
+        }
     if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
     if(document.getElementById("selectorDeColonias").value=="MUNICIPIO" || document.getElementById("selectorDeIndicadores").value=="general"){
         var mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
         mimz.addTo(mapa1);        
+        var poligonos=document.getElementsByClassName("leaflet-interactive");
         for(var i=0; i<poligonos.length; i++){
             poligonos[i].setAttribute("fill","rgb(134,51,153)")
         }
@@ -337,6 +354,10 @@ function veAlaColonia(){
     }
 }
 
+var elname;
+function consigueName(x){
+    elname=x;
+}
 
 function ponColor(color){
     micolor="";
@@ -377,7 +398,7 @@ function cambiaColor(nombre){
     }
     if(mapa1.hasLayer(mimz)){mapa1.removeLayer(mimz)}
     
-    mimz= L.geoJson(mz,{onEachFeature:popup, style:estilo});
+    mimz= L.geoJson(mz,{onEachFeature:popup2, style:estilo});
     mimz.addTo(mapa1);        
     var poligonos=document.getElementsByClassName("leaflet-interactive");
     for(var i=0; i<poligonos.length; i++){

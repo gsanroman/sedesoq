@@ -119,3 +119,18 @@ h2{color:$azul_claro;text-align: center; font-weight: 100;font-size: 1.5rem!impo
 .sinAlerta{color:aliceblue; text-shadow: $morado 0px 0px 10px;font-weight: 700;}
 
 label{ text-align: center!important;    display: block!important;}
+
+
+/*popups*/
+.leaflet-popup-content-wrapper{
+
+    .leaflet-popup-content{
+        background-image: url(../imagenes/sedesoq.PNG);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .mititle{text-align: center; font-weight: 200; color:aliceblue;}
+    .miData{text-align: center; font-weight: 900;}
+}
+.leaflet-popup-tip{background-color: $azul_claro;}
+.leaflet-popup-close-button{}
